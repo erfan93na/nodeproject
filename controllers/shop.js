@@ -1,4 +1,3 @@
-const Cart = require("../models/cart");
 const Product = require("../models/product");
 const Order = require("../models/order");
 
@@ -78,7 +77,15 @@ exports.getIndex = (req, res, next) => {
 //   // });
 // };
 
-// exports.postCart = (req, res, next) => {
+exports.postCart = (req, res, next) => {
+  const prodId=req.body.productId;
+  console.log("addro",prodId)
+  Product.findById(prodId).then(product=>{
+    
+  return  req.user.addToCart(product).then(result=>{
+    console.log(result)
+  })
+  })
 //   let fetchedCart;
 //   const prodId = req.body.product;
 //   req.user.getCart().then(cart=>{
@@ -95,7 +102,7 @@ exports.getIndex = (req, res, next) => {
 //  }).then(product=>{
 //    return fetchedCart.addProduct(product,{through:{quantity:newQuantity}}).then(_=>res.redirect("/cart")).catch(console.log)
 //  }).catch(console.log)})
-// };
+};
 
 // exports.postDeleteProduct = (req, res, next) => {
 //   const prodId = req.body.productId;

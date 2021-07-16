@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const User=require("./models/user")
 const errorController = require("./controllers/error");
 const mongoConnect=require("./util/database").mongoConnect
-
-const app = express();
+ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -19,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
   User.findById("60eea72f714b61ad5a05017d")
     .then((user) => {
-      req.user = user;
+      req.user = new User(user.name,user.email,user.cart,user._id);
       console.log(4343,user)
       next();
     })
