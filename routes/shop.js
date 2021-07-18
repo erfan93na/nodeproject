@@ -8,15 +8,15 @@ const router = express.Router();
 
 router.get("/", shopController.getIndex);
 
-router.get("/products", shopController.getProducts);
+// router.get("/products", shopController.getProducts);
 
 router.get(`/products/:productId`, shopController.getProduct);
-// router.get("/cart", shopController.getCart);
+router.get("/cart", shopController.getCart);
 router.post("/cart", shopController.postCart);
-// router.post("/cart/delete-product", shopController.postDeleteProduct);
+router.post("/cart/delete-product", shopController.postCartDeleteProduct);
 // router.get("/orders", shopController.getOrders);
 
-// // router.get("/checkout", shopController.get);
+// // // router.get("/checkout", shopController.get);
 // router.post("/create-order", shopController.postOrder);
 
 module.exports = router;
